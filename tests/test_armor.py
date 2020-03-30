@@ -1,5 +1,7 @@
+import copy
 import unittest
 from interceptor.armor import Armor
+
 
 class ArmorTest(unittest.TestCase):
     def setUp(self):
@@ -16,8 +18,120 @@ class ArmorTest(unittest.TestCase):
         self.armor._damage_cell(0, 0)
         self.assertEqual(0, self.armor.armor[0][0])
 
-    def test_reconcile_widowed(self):
-        self.assertEqual(True, False)
+    def test_reconcile_widowed_uninjured(self):
+        self.armor = Armor()
+        self.old_armor = copy.deepcopy(self.armor)
+        self.armor._reconcile_widowed()
+        self.assertListEqual(self.old_armor.armor, self.armor.armor)
+
+    def test_reconcile_widowed_positive_one(self):
+        self.armor = Armor()
+        self.armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                           [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 1, 1, 1, 1, 1, 1, 1]])
+        self.expected_armor = Armor()
+        self.expected_armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
+                                                    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
+                                                    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
+                                                    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
+                                                    [0, 0, 0, 1, 1, 1, 1, 1, 1, 1]])
+        self.armor._reconcile_widowed()
+        self.maxDiff = None
+        self.assertListEqual(self.expected_armor.armor, self.armor.armor)
+
+    def test_reconcile_widowed_positive_two(self):
+        self.armor = Armor()
+        self.armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
+                                           [1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1]])
+        self.expected_armor = Armor()
+        self.expected_armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1]])
+        self.armor._reconcile_widowed()
+        self.maxDiff = None
+        self.assertListEqual(self.expected_armor.armor, self.armor.armor)
+
+    def test_reconcile_widowed_positive_three(self):
+        self.armor = Armor()
+        self.armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
+                                           [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
+                                           [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                           [1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                           [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                           [1, 1, 1, 0, 1, 1, 0, 1, 1, 1],
+                                           [1, 1, 1, 0, 1, 1, 0, 1, 1, 1]])
+        self.expected_armor = Armor()
+        self.expected_armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
+                                                    [1, 1, 0, 0, 0, 1, 1, 1, 1, 1],
+                                                    [1, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                                    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                                    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0],
+                                                    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0]])
+        self.armor._reconcile_widowed()
+        self.maxDiff = None
+        self.assertListEqual(self.expected_armor.armor, self.armor.armor)
+
+    def test_reconcile_widowed_same(self):
+        self.armor = Armor()
+        self.armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+                                           [1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
+                                           [1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
+                                           [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                           [1, 0, 1, 1, 0, 0, 1, 1, 1, 1]])
+        self.expected_armor = Armor()
+        self.expected_armor._construct_from_matrix([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 1, 0, 1, 1, 1, 1, 1],
+                                                    [1, 1, 1, 0, 0, 0, 1, 1, 1, 1],
+                                                    [1, 1, 0, 0, 0, 0, 0, 1, 1, 1],
+                                                    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 1, 1, 0, 0, 1, 1, 1, 1],
+                                                    [1, 0, 1, 1, 0, 0, 1, 1, 1, 1]])
+        self.armor._reconcile_widowed()
+        self.maxDiff = None
+        self.assertListEqual(self.expected_armor.armor, self.armor.armor)
+
 
 if __name__ == '__main__':
     unittest.main()
