@@ -7,18 +7,18 @@
 class Armor(object):
     armor = []
 
-    def __init__(self):
-        self.armor = self._construct()
+    def __init__(self, rating=100):
+        self.armor = self._construct(rating)
 
-    # generates full armor.
-    # TODO generate armor based on rating (10-100)
-    def _construct(self):
+    def _construct(self, rating=100):
+        if rating > 100 or rating < 10:
+            raise ValueError(f"{rating} is not a valid value for rating.")
+        num_rows = int(rating / 10)
         self.armor = []
-        for i in range(10):
-            column_cells = []
-            for j in range(10):
-                column_cells.append(1)
-            self.armor.append(column_cells)
+        for i in range(num_rows):
+            self.armor.append([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+        for i in range(num_rows, 10):
+            self.armor.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
         return self.armor
 
     def _construct_from_matrix(self, matrix):
