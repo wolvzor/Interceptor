@@ -14,6 +14,29 @@ class ArmorTest(unittest.TestCase):
         self.assertEqual(1, self.armor.armor[9][0])
         self.assertEqual(1, self.armor.armor[9][9])
 
+    def test_generate_armor_90(self):
+        self.armor = Armor(90)
+        self.expected_armor = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+        self.assertListEqual(self.expected_armor, self.armor.armor)
+
+    def test_generate_armor_110_exception(self):
+        with self.assertRaises(ValueError) as context:
+            Armor(110)
+
+    def test_generate_armor_0_exception(self):
+        with self.assertRaises(ValueError) as context:
+            Armor(0)
+
     def test_damage_cell(self):
         self.armor._damage_cell(0, 0)
         self.assertEqual(0, self.armor.armor[0][0])
