@@ -5,7 +5,6 @@
 
 
 class Armor(object):
-    armor = []
 
     def __init__(self, rating=100):
         self.armor = self._construct(rating)
