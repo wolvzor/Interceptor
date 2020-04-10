@@ -1,5 +1,5 @@
 import unittest
-from interceptor.data.weapon import Weapon
+from interceptor.fighter.weapon import Weapon
 
 
 class WeaponTest(unittest.TestCase):

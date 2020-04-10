@@ -1,6 +1,6 @@
 import unittest
 
-from interceptor.data.weapon import Weapon
+from interceptor.fighter.weapon import Weapon
 from interceptor.fighter.fighter import Fighter, generate_shields, generate_armor
 from interceptor.fighter.fighter_weapons import FighterWeapons
 

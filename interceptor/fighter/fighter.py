@@ -1,4 +1,4 @@
-from interceptor.armor import Armor
+from interceptor.fighter.armor import Armor
 
 
 def generate_shields(bow_rating, right_rating, left_rating, stern_rating):
