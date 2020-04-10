@@ -27,3 +27,6 @@ class Weapon(object):
         if self.damage is None:
             self.damage = 0
         return self.type, self.damage
+
+    def __str__(self):
+        return f"{self.name} {self.type} {self.ranges} {self.power} {self.tonnage} {self.cost}"

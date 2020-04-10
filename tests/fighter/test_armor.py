@@ -1,6 +1,6 @@
 import copy
 import unittest
-from interceptor.armor import Armor
+from interceptor.fighter.armor import Armor
 
 
 class ArmorTest(unittest.TestCase):
