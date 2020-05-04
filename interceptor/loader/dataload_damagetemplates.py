@@ -14,4 +14,5 @@ def load_templates(filename='data/damage_template_data.csv'):
             for x in range(0, 10):
                 damage_list.append(int(line[x + 5]))
             template_dict.update({line[0]: DamageTemplate(line[0], line[1], line[2], line[3], line[4], damage_list)})
+    raw_data.close()
     return template_dict

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Cheetah",
+    "class": "Light Fighter",
+    "mass": 73,
+    "cost": 2366300,
+    "engines": {
+      "center": 600,
+      "right": 450,
+      "left": 450
+    },
+    "thrust": 10,
+    "streamlining": true,
+    "antigrav": false,
+    "shields": {
+      "bow": 50,
+      "right": 40,
+      "left": 40,
+      "stern": 50
+    },
+    "armor": {
+      "bow": 50,
+      "right": 30,
+      "left": 30,
+      "stern": 50
+    },
+    "weapons": [
+      {
+        "type": "5/1 Laser",
+        "location": "left"
+      },
+      {
+        "type": "5/1 Laser",
+        "location": "right"
+      },
+      {
+        "type": "EPC 9",
+        "location": "left"
+      },
+      {
+        "type": "EPC 9",
+        "location": "right"
+      },
+      {
+        "type": "Hard Point",
+        "location": "bow"
+      }
+    ],
+    "description": "The Cheetah is the Renegade legion's finest light fighter, a pilot's stream come true. The Cheetah has enough firepower to defeat most fighters and enough thrust to run from those it cannot. In the hands of a skilled pilot, a Cheetah can defeat TOG fighters up to twice its mass."
+  },
+  {
+    "name": "Guardian",
+    "class": "Medium Fighter",
+    "mass": 106,
+    "cost": 1638500,
+    "engines": {
+      "center": 900
+    },
+    "thrust": 4,
+    "streamlining": true,
+    "antigrav": false,
+    "shields": {
+      "bow": 50,
+      "right": 40,
+      "left": 40,
+      "stern": 50
+    },
+    "armor": {
+      "bow": 100,
+      "right": 80,
+      "left": 80,
+      "stern": 100
+    },
+    "weapons": [
+      {
+        "type": "5/2 Laser",
+        "location": "left"
+      },
+      {
+        "type": "5/2 Laser",
+        "location": "right"
+      },
+      {
+        "type": "EPC 18",
+        "location": "bow"
+      },
+      {
+        "type": "EPC 18",
+        "location": "bow"
+      },
+      {
+        "type": "Hard Point",
+        "location": "bow"
+      }
+    ],
+    "description": "The Guardian is a common point-defense fighter, assigned to protect important space and ground installations. Though quite painfully slow, the Guardian packs a tremendous offensive punch and is capable of absorbing damage that would devastate other fighters of its class."
+  }
+]
