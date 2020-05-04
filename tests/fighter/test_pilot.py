@@ -20,8 +20,8 @@ class PilotTest(unittest.TestCase):
         self.pilot = Pilot("Jane", "Minerva", 7, 8, self.fighter)
         self.assertEqual("Jane", self.pilot.name, "Name must equal")
         self.assertEqual("Minerva", self.pilot.callsign, "Callsign must equal")
-        self.assertEqual(7, self.pilot.piloting_skill, "Callsign must equal")
-        self.assertEqual(8, self.pilot.gunnery_skill, "Callsign must equal")
+        self.assertEqual(7, self.pilot.piloting_skill, "Piloting skill must equal")
+        self.assertEqual(8, self.pilot.gunnery_skill, "Gunnery Skill must equal")
         self.assertEqual(self.fighter, self.pilot.fighter, "Fighter must equal")
 
 
