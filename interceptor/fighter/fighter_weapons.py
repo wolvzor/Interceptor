@@ -5,8 +5,6 @@ class FighterWeapons(object):
         self.bow = []
         self.left = []
         self.right = []
-        self.one = []
-        self.two = []
 
-    def _add_weapon(self, location, weapon):
+    def add_weapon(self, location, weapon):
         self.__dict__[location].append(weapon)

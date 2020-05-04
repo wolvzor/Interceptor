@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Lancea",
+    "class": "Light Fighter",
+    "mass": 71,
+    "cost": 1834300,
+    "engines": {
+      "right": 700,
+      "left": 700
+    },
+    "thrust": 10,
+    "streamlining": true,
+    "antigrav": false,
+    "shields": {
+      "bow": 40,
+      "right": 30,
+      "left": 30,
+      "stern": 40
+    },
+    "armor": {
+      "bow": 50,
+      "right": 30,
+      "left": 30,
+      "stern": 50
+    },
+    "weapons": [
+      {
+        "type": "5/1 Laser",
+        "location": "right"
+      },
+      {
+        "type": "5/1 Laser",
+        "location": "left"
+      },
+      {
+        "type": "Hard Point",
+        "location": "bow"
+      },
+      {
+        "type": "Hard Point",
+        "location": "right"
+      },
+      {
+        "type": "Hard Point",
+        "location": "left"
+      }
+    ],
+    "description": "Introduced in 6819, the Lancea is TOG's standard light reconnaissance and interceptor fighter. Like the Commonwealth's Cheetah, the Lancea's main claim to game is its speed. In a reconnaissance role, the wing lasers are replaced with hard points and mounted with a variety of ordnance of surveillance equipment. With 11 Gs of acceleration, a high-thrust Lancea is one of the fastest fighters in the galaxy."
+  },
+  {
+    "name": "Verutum",
+    "class": "Medium Fighter",
+    "mass": 99,
+    "cost": 1951500,
+    "engines": {
+      "right": 600,
+      "left": 600
+    },
+    "thrust": 6,
+    "streamlining": true,
+    "antigrav": false,
+    "shields": {
+      "bow": 50,
+      "right": 30,
+      "left": 30,
+      "stern": 50
+    },
+    "armor": {
+      "bow": 60,
+      "right": 50,
+      "left": 50,
+      "stern": 60
+    },
+    "weapons": [
+      {
+        "type": "5/1 Laser",
+        "location": "right"
+      },
+      {
+        "type": "5/1 Laser",
+        "location": "left"
+      },
+      {
+        "type": "EPC 14",
+        "location": "bow"
+      },
+      {
+        "type": "NPC 16",
+        "location": "bow"
+      },
+      {
+        "type": "Hard Point",
+        "location": "bow"
+      }
+    ],
+    "description": "The Verutum is an older light fighter that entered service in 6775 during the final stages of the TOG campaign against the KessRith Empire. Its design parameters called for a fighter that could perform missions similar to the Penetrator's interceptions and standing off strike missions."
+  }
+]

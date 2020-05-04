@@ -26,7 +26,7 @@ class FighterTest(unittest.TestCase):
         self.test_shields = generate_shields(50, 40, 40, 40)
         self.test_armors = generate_armor(100, 60, 60, 100)
         self.test_weapons = FighterWeapons()
-        self.test_weapons._add_weapon("bow",
+        self.test_weapons.add_weapon("bow",
                                       Weapon("MDC 8", "MDC", dict([(1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8)])
                                              , 6, 24, 108000))
         self.fighter = Fighter("Avenger", "Heavy Fighter", 175, 3552300, 0, 1200, 1200, 7, True, False,
