@@ -1,10 +1,13 @@
 import json
+import os
 
 from interceptor.fighter.fighter import generate_shields, generate_armor, Fighter
 from interceptor.fighter.fighter_weapons import FighterWeapons
 
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
-def load_fighters(filename, loaded_weapons):
+
+def load_fighters(filename, loaded_weapons, image_offset="../"):
     fighters_dict = dict()
     with open(filename) as json_file:
         json_array = json.load(json_file)
@@ -27,10 +30,12 @@ def load_fighters(filename, loaded_weapons):
             left_engine = engines['left'] if 'left' in engines else 0
             right_engine = engines['right'] if 'right' in engines else 0
 
+            image_filename = os.path.join(THIS_DIR, image_offset + item['image'])
+
             fighters_dict.update({item['name']:
                                       Fighter(item['name'], item['class'], item['mass'], item['cost'], center_engine,
                                               right_engine,
                                               left_engine, item['thrust'], item['streamlining'], item['antigrav'],
                                               shield_dict,
-                                              armor_dict, fighter_weapons)})
+                                              armor_dict, fighter_weapons, image_filename)})
     return fighters_dict

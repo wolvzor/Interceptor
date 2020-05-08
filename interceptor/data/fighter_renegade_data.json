@@ -46,7 +46,8 @@
         "location": "bow"
       }
     ],
-    "description": "The Cheetah is the Renegade legion's finest light fighter, a pilot's stream come true. The Cheetah has enough firepower to defeat most fighters and enough thrust to run from those it cannot. In the hands of a skilled pilot, a Cheetah can defeat TOG fighters up to twice its mass."
+    "description": "The Cheetah is the Renegade legion's finest light fighter, a pilot's stream come true. The Cheetah has enough firepower to defeat most fighters and enough thrust to run from those it cannot. In the hands of a skilled pilot, a Cheetah can defeat TOG fighters up to twice its mass.",
+    "image": "data/fighter/cheetah.gif"
   },
   {
     "name": "Guardian",
@@ -93,6 +94,7 @@
         "location": "bow"
       }
     ],
-    "description": "The Guardian is a common point-defense fighter, assigned to protect important space and ground installations. Though quite painfully slow, the Guardian packs a tremendous offensive punch and is capable of absorbing damage that would devastate other fighters of its class."
+    "description": "The Guardian is a common point-defense fighter, assigned to protect important space and ground installations. Though quite painfully slow, the Guardian packs a tremendous offensive punch and is capable of absorbing damage that would devastate other fighters of its class.",
+    "image": "data/fighter/guardian.gif"
   }
 ]

@@ -14,7 +14,7 @@ class TestDataLoaderFighters(unittest.TestCase):
         self.weapons = load_weapons(self.filename_weapons)
 
         self.filename = os.path.join(THIS_DIR, '../../interceptor/data/fighter_renegade_data.json')
-        self.fighters = load_fighters(self.filename, self.weapons)
+        self.fighters = load_fighters(self.filename, self.weapons, "../../interceptor/")
         self.assertTrue(len(self.fighters) > 0, "Number of fighters must be greater than zero")
 
         self.fighter = self.fighters.get('Cheetah')

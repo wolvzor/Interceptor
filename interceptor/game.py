@@ -1,3 +1,5 @@
+from random import randrange
+
 import pygame
 import sys
 
@@ -29,8 +31,11 @@ for key in tog_fighters:
 
 # Pygame code - may move later
 
+screen_height = 480
+screen_width = 640
+
 pygame.init()
-screen = pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 # Drawing some lines
 black = (0, 0, 0)
@@ -39,9 +44,13 @@ closed = True
 pointlist = [(100, 100), (186, 50), (273, 100), (273, 200), (186, 250), (100, 200)]
 thickness = 1
 
-hexgrid = HexGrid(25, 10, 10, 50, 50)
+hexgrid = HexGrid(60, 10, 10, 50, 50)
 pointlist = hexgrid.generate_points_for_hex(0, 0)
 hexes = hexgrid.generate_points()
+
+# TODO Fit into pilot/fighter objects
+cheetah = pygame.image.load('data/fighter/cheetah.gif')
+cheetah = pygame.transform.rotozoom(cheetah, -90, .3)
 
 while True:
 
@@ -59,6 +68,14 @@ while True:
     # TODO updatePoints(points)  # changes the location of the points
     for hexpointlist in hexes:
         pygame.draw.lines(screen, green, closed, hexpointlist, thickness)  # redraw the points
+
+    # TODO Right now it randomly draws on screen, which is fine since I just want to demonstrate that the drawing code
+    # works at the fighter level. Later on we'll have fighter locations.
+    for fighter in renegade_fighters:
+        renegade_fighters[fighter].draw(screen, randrange(screen_width), randrange(screen_height), randrange(360), .3)
+
+    for fighter in tog_fighters:
+        tog_fighters[fighter].draw(screen, randrange(screen_width), randrange(screen_height), randrange(360), .3)
 
     # update the screen
     pygame.display.update()
