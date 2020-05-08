@@ -1,7 +1,10 @@
+from random import randrange
+
 import pygame
 import sys
 
 from interceptor.engine.hexgrid import HexGrid
+from interceptor.fighter.pilot import Pilot
 from interceptor.loader.dataload_damagetemplates import load_templates
 from interceptor.loader.dataload_fighters import load_fighters
 from interceptor.loader.dataload_weapons import load_weapons
@@ -29,8 +32,11 @@ for key in tog_fighters:
 
 # Pygame code - may move later
 
+screen_height = 480
+screen_width = 640
+
 pygame.init()
-screen = pygame.display.set_mode((640, 480))
+screen = pygame.display.set_mode((screen_width, screen_height))
 
 # Drawing some lines
 black = (0, 0, 0)
@@ -39,9 +45,28 @@ closed = True
 pointlist = [(100, 100), (186, 50), (273, 100), (273, 200), (186, 250), (100, 200)]
 thickness = 1
 
-hexgrid = HexGrid(25, 10, 10, 50, 50)
+hexgrid = HexGrid(60, 10, 10, 50, 50)
 pointlist = hexgrid.generate_points_for_hex(0, 0)
 hexes = hexgrid.generate_points()
+
+# Define starting Pilots
+renegade_pilot = Pilot("Jane", "Minerva", 5, 4, renegade_fighters['Cheetah'])
+renegade_pilot.change_heading(0)
+renegade_pilot.change_hex(4,3)
+
+renegade_pilot2 = Pilot("Jane", "Minerva", 5, 4, renegade_fighters['Guardian'])
+renegade_pilot2.change_heading(2)
+renegade_pilot2.change_hex(3,2)
+renegade_pilots = [renegade_pilot, renegade_pilot2]
+
+tog_pilot = Pilot("John", "Invictus", 6, 6, tog_fighters['Lancea'])
+tog_pilot.change_heading(4)
+tog_pilot.change_hex(2,2)
+
+tog_pilot2 = Pilot("John", "Invictus", 6, 6, tog_fighters['Verutum'])
+tog_pilot2.change_heading(3)
+tog_pilot2.change_hex(1,0)
+tog_pilots = [tog_pilot, tog_pilot2]
 
 while True:
 
@@ -55,10 +80,14 @@ while True:
     screen.fill(black)
 
     # draw the updated picture
-
-    # TODO updatePoints(points)  # changes the location of the points
     for hexpointlist in hexes:
         pygame.draw.lines(screen, green, closed, hexpointlist, thickness)  # redraw the points
+
+    for pilot in renegade_pilots:
+        pilot.draw(screen, hexgrid, .3)
+
+    for pilot in tog_pilots:
+        pilot.draw(screen, hexgrid, .3)
 
     # update the screen
     pygame.display.update()

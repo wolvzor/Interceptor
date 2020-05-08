@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -30,4 +30,5 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest
+        python -m pip install -U pygame --user
         python -m pytest tests/

@@ -45,7 +45,8 @@
         "location": "left"
       }
     ],
-    "description": "Introduced in 6819, the Lancea is TOG's standard light reconnaissance and interceptor fighter. Like the Commonwealth's Cheetah, the Lancea's main claim to game is its speed. In a reconnaissance role, the wing lasers are replaced with hard points and mounted with a variety of ordnance of surveillance equipment. With 11 Gs of acceleration, a high-thrust Lancea is one of the fastest fighters in the galaxy."
+    "description": "Introduced in 6819, the Lancea is TOG's standard light reconnaissance and interceptor fighter. Like the Commonwealth's Cheetah, the Lancea's main claim to game is its speed. In a reconnaissance role, the wing lasers are replaced with hard points and mounted with a variety of ordnance of surveillance equipment. With 11 Gs of acceleration, a high-thrust Lancea is one of the fastest fighters in the galaxy.",
+    "image": "data/fighter/lancea.gif"
   },
   {
     "name": "Verutum",
@@ -93,6 +94,7 @@
         "location": "bow"
       }
     ],
-    "description": "The Verutum is an older light fighter that entered service in 6775 during the final stages of the TOG campaign against the KessRith Empire. Its design parameters called for a fighter that could perform missions similar to the Penetrator's interceptions and standing off strike missions."
+    "description": "The Verutum is an older light fighter that entered service in 6775 during the final stages of the TOG campaign against the KessRith Empire. Its design parameters called for a fighter that could perform missions similar to the Penetrator's interceptions and standing off strike missions.",
+    "image": "data/fighter/verutum.gif"
   }
 ]

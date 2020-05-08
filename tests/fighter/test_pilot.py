@@ -24,6 +24,19 @@ class PilotTest(unittest.TestCase):
         self.assertEqual(8, self.pilot.gunnery_skill, "Gunnery Skill must equal")
         self.assertEqual(self.fighter, self.pilot.fighter, "Fighter must equal")
 
+    def test_hex(self):
+        self.fighter = Fighter("Test Fighter", "Light Fighter", 1, 2, 3, 4, 5, 6, True, True, None, None, None)
+        self.pilot = Pilot("Jane", "Minerva", 7, 8, self.fighter)
+        self.assertEqual(0, self.pilot.x, "Initial hex x should be 0")
+        self.assertEqual(0, self.pilot.y, "Initial hex y should be 0")
+        self.assertEqual(0, self.pilot.heading, "Initial hex heading should be 0")
+
+        self.pilot.change_hex(1, 2)
+        self.pilot.change_heading(3)
+        self.assertEqual(1, self.pilot.x, "New hex x should be 1")
+        self.assertEqual(2, self.pilot.y, "New hex y should be 2")
+        self.assertEqual(3, self.pilot.heading, "New hex heading should be 3")
+
 
 if __name__ == '__main__':
     unittest.main()

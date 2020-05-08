@@ -1,3 +1,6 @@
+import os
+import pygame
+
 from interceptor.fighter.armor import Armor
 
 
@@ -14,7 +17,7 @@ class Fighter(object):
 
     def __init__(self, name="", fighter_class="Light Fighter", mass=0, cost=0, center_engine=0, right_engine=0,
                  left_engine=0,
-                 thrust=0, streamlining=False, antigrav=False, shields=None, armors=None, weapons=None):
+                 thrust=0, streamlining=False, antigrav=False, shields=None, armors=None, weapons=None, image=None):
         # TODO Find out enumerations in Python
         self.name = name
         self.fighter_class = fighter_class
@@ -29,3 +32,12 @@ class Fighter(object):
         self.shields = shields
         self.armors = armors
         self.weapons = weapons
+        if image is None:
+            self.image = None
+        else:
+            self.image = pygame.image.load(image)
+
+    def draw(self, screen, x, y, rot, scale):
+        # TODO Fix the -90 by changing the base image file.
+        temp_image = pygame.transform.rotozoom(self.image, -90 + rot, scale)
+        screen.blit(temp_image, (x, y))

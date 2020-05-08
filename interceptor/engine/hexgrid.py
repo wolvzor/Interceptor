@@ -15,10 +15,10 @@ class HexGrid:
     def generate_points_for_hex(self, x, y):
         if y % 2 == 0:
             x_base = (x * self.width) + self.x_offset
-            y_base = (y * self.height * 3/4) + self.y_offset
+            y_base = (y * self.height * 3 / 4) + self.y_offset
         else:
             x_base = (x * self.width) + self.width / 2 + self.x_offset
-            y_base = (y * self.height * 3/4) + self.y_offset
+            y_base = (y * self.height * 3 / 4) + self.y_offset
 
         pointlist = [(x_base, y_base),
                      (x_base + self.width / 2, y_base - self.height / 4),
@@ -34,3 +34,16 @@ class HexGrid:
             for c in range(self.columns):
                 hexes.append(self.generate_points_for_hex(c, r))
         return hexes
+
+    def calculate_object_drawing_tuple(self, x, y):
+        # TODO This is a temp fix for the rotation code. Fix the rotation code and get rid of this offset.
+        object_offset = self.side * .2
+
+        if y % 2 == 0:
+            x_base = (x * self.width) + self.x_offset
+            y_base = (y * self.height * 3 / 4) + self.y_offset - object_offset
+        else:
+            x_base = (x * self.width) + self.width / 2 + self.x_offset
+            y_base = (y * self.height * 3 / 4) + self.y_offset - object_offset
+
+        return x_base, y_base
