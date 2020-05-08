@@ -38,5 +38,6 @@ class Fighter(object):
             self.image = pygame.image.load(image)
 
     def draw(self, screen, x, y, rot, scale):
-        temp_image = pygame.transform.rotozoom(self.image, rot, scale)
+        # TODO Fix the -90 by changing the base image file.
+        temp_image = pygame.transform.rotozoom(self.image, -90 + rot, scale)
         screen.blit(temp_image, (x, y))

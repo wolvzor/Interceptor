@@ -4,6 +4,7 @@ import pygame
 import sys
 
 from interceptor.engine.hexgrid import HexGrid
+from interceptor.fighter.pilot import Pilot
 from interceptor.loader.dataload_damagetemplates import load_templates
 from interceptor.loader.dataload_fighters import load_fighters
 from interceptor.loader.dataload_weapons import load_weapons
@@ -48,9 +49,16 @@ hexgrid = HexGrid(60, 10, 10, 50, 50)
 pointlist = hexgrid.generate_points_for_hex(0, 0)
 hexes = hexgrid.generate_points()
 
-# TODO Fit into pilot/fighter objects
-cheetah = pygame.image.load('data/fighter/cheetah.gif')
-cheetah = pygame.transform.rotozoom(cheetah, -90, .3)
+# Define starting Pilots
+renegade_pilot = Pilot("Jane", "Minerva", 5, 4, renegade_fighters['Cheetah'])
+renegade_pilot.change_heading(0)
+renegade_pilot.change_hex(4,3)
+renegade_pilots = [renegade_pilot]
+
+tog_pilot = Pilot("John", "Invictus", 6, 6, tog_fighters['Lancea'])
+tog_pilot.change_heading(4)
+tog_pilot.change_hex(2,2)
+tog_pilots = [tog_pilot]
 
 while True:
 
@@ -64,18 +72,14 @@ while True:
     screen.fill(black)
 
     # draw the updated picture
-
-    # TODO updatePoints(points)  # changes the location of the points
     for hexpointlist in hexes:
         pygame.draw.lines(screen, green, closed, hexpointlist, thickness)  # redraw the points
 
-    # TODO Right now it randomly draws on screen, which is fine since I just want to demonstrate that the drawing code
-    # works at the fighter level. Later on we'll have fighter locations.
-    for fighter in renegade_fighters:
-        renegade_fighters[fighter].draw(screen, randrange(screen_width), randrange(screen_height), randrange(360), .3)
+    for pilot in renegade_pilots:
+        pilot.draw(screen, hexgrid, .3)
 
-    for fighter in tog_fighters:
-        tog_fighters[fighter].draw(screen, randrange(screen_width), randrange(screen_height), randrange(360), .3)
+    for pilot in tog_pilots:
+        pilot.draw(screen, hexgrid, .3)
 
     # update the screen
     pygame.display.update()
