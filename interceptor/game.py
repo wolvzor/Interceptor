@@ -68,6 +68,10 @@ tog_pilot2.change_heading(3)
 tog_pilot2.change_hex(1,0)
 tog_pilots = [tog_pilot, tog_pilot2]
 
+# background space picture
+space_bg = pygame.image.load('data/space/potw1716a.jpg')
+space_bg = pygame.transform.scale(space_bg, (screen_width, screen_height))
+
 while True:
 
     # check for quit events
@@ -78,6 +82,9 @@ while True:
 
     # erase the screen
     screen.fill(black)
+
+    # Display background image
+    screen.blit(space_bg, (0, 0))
 
     # draw the updated picture
     for hexpointlist in hexes:
