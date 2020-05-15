@@ -22,14 +22,25 @@ class Pilot(object):
 
         self.x = 0
         self.y = 0
-        self.heading = 0
+        self.current_thrust = self.fighter.thrust
 
+    # TODO for alpha, pilots and fighers are always in the same hex.
     def change_hex(self, x, y):
         self.x = x
         self.y = y
+        self.fighter.change_hex(x, y)
 
     def change_heading(self, heading):
-        self.heading = heading
+        self.fighter.change_heading(heading)
+
+    def turn_left(self):
+        self.fighter.turn_left()
+
+    def turn_right(self):
+        self.fighter.turn_right()
+
+    def move_forward(self):
+        self.fighter.move_forward()
 
     # Returns a tuple of piloting skill and gunnery skill
     @staticmethod
@@ -38,6 +49,4 @@ class Pilot(object):
         return Pilot.beginning_skill_table[roll]
 
     def draw(self, screen, hexgrid, scale):
-        rot = self.heading * 60
-        (base_x, base_y) = hexgrid.calculate_object_drawing_tuple(self.x, self.y)
-        self.fighter.draw(screen, base_x, base_y, rot, scale)
+        self.fighter.draw(screen, hexgrid, scale)

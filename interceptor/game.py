@@ -3,6 +3,8 @@ from random import randrange
 import pygame
 import sys
 
+from pygame import *
+
 from interceptor.engine.hexgrid import HexGrid
 from interceptor.fighter.pilot import Pilot
 from interceptor.loader.dataload_damagetemplates import load_templates
@@ -74,11 +76,19 @@ space_bg = pygame.transform.scale(space_bg, (screen_width, screen_height))
 
 while True:
 
-    # check for quit events
+    # TODO Add a way to change the current pilot.
+    current_pilot = renegade_pilots[0]
+
+    # check for quit/keyboard events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                current_pilot.turn_left()
+            elif event.key == pygame.K_RIGHT:
+                current_pilot.turn_right()
 
     # erase the screen
     screen.fill(black)
