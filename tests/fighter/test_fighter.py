@@ -45,6 +45,32 @@ class FighterTest(unittest.TestCase):
         self.assertEqual(self.test_armors, self.fighter.armors, "Armor must match")
         self.assertEqual(self.test_weapons, self.fighter.weapons, "Weapons must match")
 
+    def test_turning(self):
+        self.test_shields = generate_shields(50, 40, 40, 40)
+        self.test_armors = generate_armor(100, 60, 60, 100)
+        self.test_weapons = FighterWeapons()
+        self.test_weapons.add_weapon("bow",
+                                      Weapon("MDC 8", "MDC", dict([(1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8)])
+                                             , 6, 24, 108000))
+        self.fighter = Fighter("Avenger", "Heavy Fighter", 175, 3552300, 0, 1200, 1200, 7, True, False,
+                               self.test_shields, self.test_armors, self.test_weapons)
+
+        self.assertEqual(0, self.fighter.heading, "Starting heading must be 0")
+
+        self.fighter.turn_right()
+        self.assertEqual(5, self.fighter.heading, "Heading must have turned right")
+
+        self.fighter.turn_right()
+        self.assertEqual(4, self.fighter.heading, "Heading must have turned right")
+
+        self.fighter.turn_left()
+        self.assertEqual(5, self.fighter.heading, "Heading must have turned left")
+
+        self.fighter.turn_left()
+        self.assertEqual(0, self.fighter.heading, "Heading must have turned left")
+
+        self.fighter.turn_left()
+        self.assertEqual(1, self.fighter.heading, "Heading must have turned left")
 
 if __name__ == '__main__':
     unittest.main()

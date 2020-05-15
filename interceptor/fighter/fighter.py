@@ -1,4 +1,3 @@
-import os
 import pygame
 
 from interceptor.fighter.armor import Armor
@@ -37,7 +36,39 @@ class Fighter(object):
         else:
             self.image = pygame.image.load(image)
 
-    def draw(self, screen, x, y, rot, scale):
+        self.x = 0
+        self.y = 0
+        self.heading = 0
+        self.current_thrust = self.thrust
+
+    def change_hex(self, x, y):
+        self.x = x
+        self.y = y
+
+    def change_heading(self, heading):
+        self.heading = heading
+
+    def turn_left(self):
+        if self.heading < 5:
+            self.heading = self.heading + 1
+        else:
+            self.heading = 0
+        print(f"Heading of {self.name} changed to {self.heading}")
+
+    def turn_right(self):
+        if self.heading > 0:
+            self.heading = self.heading - 1
+        else:
+            self.heading = 5
+        print(f"Heading of {self.name} changed to {self.heading}")
+
+    def change_thrust(self, thrust):
+        self.current_thrust = thrust
+
+    # TODO Extract this into a base drawable object
+    def draw(self, screen, hexgrid, scale):
+        rot = self.heading * 60
+        (base_x, base_y) = hexgrid.calculate_object_drawing_tuple(self.x, self.y)
         # TODO Fix the -90 by changing the base image file.
         temp_image = pygame.transform.rotozoom(self.image, -90 + rot, scale)
-        screen.blit(temp_image, (x, y))
+        screen.blit(temp_image, (base_x, base_y))
