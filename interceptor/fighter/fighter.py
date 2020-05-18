@@ -62,6 +62,32 @@ class Fighter(object):
             self.heading = 5
         print(f"Heading of {self.name} changed to {self.heading}")
 
+    def move_forward(self):
+        y_even = True if self.y % 2 == 0 else False
+
+        if self.heading == 0:
+            self.x = self.x + 1
+        elif self.heading == 1:
+            if not y_even:
+                self.x = self.x + 1
+            self.y = self.y - 1
+        elif self.heading == 2:
+            if y_even:
+                self.x = self.x - 1
+            self.y = self.y - 1
+        elif self.heading == 3:
+            self.x = self.x - 1
+        elif self.heading == 4:
+            if y_even:
+                self.x = self.x - 1
+            self.y = self.y + 1
+        elif self.heading == 5:
+            if not y_even:
+                self.x = self.x + 1
+            self.y = self.y + 1
+
+        print(f"Moved fighter forward to hex ({self.x},{self.y})")
+
     def change_thrust(self, thrust):
         self.current_thrust = thrust
 
