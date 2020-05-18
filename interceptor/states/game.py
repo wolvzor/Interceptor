@@ -88,6 +88,8 @@ class Game(States):
                 self.current_pilot.turn_left()
             elif event.key == pygame.K_RIGHT:
                 self.current_pilot.turn_right()
+            elif event.key == pygame.K_UP:
+                self.current_pilot.move_forward()
             elif event.key == pygame.K_ESCAPE:
                 self.done = True
             else:
