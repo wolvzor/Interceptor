@@ -30,17 +30,25 @@ class Pilot(object):
         self.y = y
         self.fighter.change_hex(x, y)
 
+    def update_coordinates(self):
+        self.x = self.fighter.x
+        self.y = self.fighter.y
+
     def change_heading(self, heading):
         self.fighter.change_heading(heading)
+        self.update_coordinates()
 
     def turn_left(self):
         self.fighter.turn_left()
+        self.update_coordinates()
 
     def turn_right(self):
         self.fighter.turn_right()
+        self.update_coordinates()
 
     def move_forward(self):
         self.fighter.move_forward()
+        self.update_coordinates()
 
     # Returns a tuple of piloting skill and gunnery skill
     @staticmethod
