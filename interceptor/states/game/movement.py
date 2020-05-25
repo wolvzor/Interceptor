@@ -43,10 +43,8 @@ class Movement(States):
         # Use that list for the turns, instead of pulling from mission.
         # Then, once all lists are exhausted, go back to interphase.
 
-        # TODO Add a way to change the current pilot.
         self.current_pilot = self.mission.renegade_pilots[0]
 
-        # TODO Encapsulate target and current hex somewhere
         self.current_hex = (self.current_pilot.x, self.current_pilot.y)
         self.target_hex = None
 
@@ -102,9 +100,6 @@ class Movement(States):
                 print(f'Game State Keydown ({event.key} was pressed, which is currently unbound.')
 
     def update(self, screen, dt):
-
-
-        # TODO Change current hex if necessary
         if self.pilot_changed or self.pilot_moved:
             print(f"Hex changed. Updating coordinates to {self.current_pilot.x}, {self.current_pilot.y}")
             self.current_hex = (self.current_pilot.x, self.current_pilot.y)
@@ -113,27 +108,20 @@ class Movement(States):
             self.pilot_changed = False
             self.pilot_moved = False
 
-        # TODO Change target hex if necessary
-
         self.draw(screen)
 
     def draw(self, screen):
-        # erase the screen
         screen.fill(self.black)
 
         # Display background image
         screen.blit(self.space_bg, (0, 0))
 
-        # draw the updated picture
         # TODO Move this to hexgrid?
         for hexpointlist in self.hexgrid.generate_points():
             pygame.draw.lines(screen, self.blue, self.closed, hexpointlist, self.thickness)  # redraw the points
 
         if self.current_hex_pointlist is not None:
             pygame.draw.lines(screen, self.green, self.closed, self.current_hex_pointlist, self.thickness)  # redraw the points
-
-        if self.target_hex_pointlist is not None:
-            pygame.draw.lines(screen, self.red, self.closed, self.target_hex_pointlist, self.thickness)  # redraw the points
 
         for pilot in self.mission.renegade_pilots:
             pilot.draw(screen, self.hexgrid, .3)

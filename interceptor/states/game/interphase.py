@@ -4,7 +4,6 @@ import pygame
 
 from interceptor.engine.hexgrid import HexGrid
 from interceptor.engine.mission import Mission
-from interceptor.fighter.pilot import Pilot
 from interceptor.loader.dataload_damagetemplates import load_templates
 from interceptor.loader.dataload_fighters import load_fighters
 from interceptor.loader.dataload_weapons import load_weapons
