@@ -1,4 +1,6 @@
 class States(object):
+    shared_data = {}
+
     def __init__(self):
         self.done = False
         self.next = None

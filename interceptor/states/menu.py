@@ -9,7 +9,7 @@ class Menu(States):
     def __init__(self, **settings):
         States.__init__(self)
         self.__dict__.update(settings)
-        self.next = 'game'
+        self.next = 'interphase'
 
         # background title picture
         self.title_bg = pygame.image.load('data/menu/title.jpg')
@@ -20,6 +20,8 @@ class Menu(States):
 
     def startup(self):
         print('starting Menu state stuff')
+        if States.shared_data.get('return_to') is not None:
+            self.next = States.shared_data.get('return_to')
 
     def get_event(self, event):
         if event.type == pygame.QUIT:
